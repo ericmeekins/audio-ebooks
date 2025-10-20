@@ -1,40 +1,29 @@
 ---
-import { AstroSEO } from 'astro-seo';
 const { title = 'Book Notes', description = 'Timeless reading notes and summaries' } = Astro.props;
+const site = Astro.site?.toString() ?? 'https://mixx.it.com';
+const url = new URL(Astro.request.url ?? site).toString();
 ---
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <AstroSEO title={title} description={description} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
     <style>
       :root { --max: 840px; --fg: #111; --muted:#5b5b5b; --bg:#fff; --brand:#0ea5e9;}
       html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.7}
-      header,main,footer{max-width:var(--max);margin:0 auto;padding:1.5rem}
-      a{color:var(--brand);text-decoration:none}
-      a:hover{text-decoration:underline}
-      nav{display:flex;gap:1rem;align-items:center}
-      .brand{font-weight:800;letter-spacing:.2px}
-      .post{margin:2rem 0}
-      .muted{color:var(--muted)}
-      .card{border:1px solid #eee;border-radius:14px;padding:1rem}
-      .cta{margin-top:2rem;padding:1rem;border:1px dashed #cbd5e1;border-radius:12px;background:#f8fafc}
-      code{background:#f1f5f9;padding:.15rem .4rem;border-radius:6px}
-    </style>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <a class="brand" href="/">Book Notes</a>
-        <a href="/blog">Blog</a>
-      </nav>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer class="muted">
-      <hr />
-      <p>© {new Date().getFullYear()} Book Notes · Built with <a href="https://astro.build/">Astro</a></p>
-    </footer>
-  </body>
-</html>
+      header,main,footer{max-width:var(--max);margin:0 auto;padding
