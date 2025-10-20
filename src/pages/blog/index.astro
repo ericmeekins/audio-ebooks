@@ -1,23 +1,112 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import rss from '@astrojs/rss';
-import { glob } from 'astro/loaders';
-
-const posts = await Astro.glob('/src/pages/blog/*.md');
-posts.sort((a,b)=> new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate));
-
-export const get = () => rss({
-  title: 'Book Notes — RSS',
-  description: 'Reading notes and summaries',
-  site: import.meta.env.SITE || 'https://mixx.it.com',
-  items: posts.map(p => ({ link: p.url, title: p.frontmatter.title, description: p.frontmatter.description }))
-});
+const posts = (await Astro.glob('./*.md'))
+  .sort((a, b) => new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate));
 ---
-<Layout title="Blog">
-  <h1>Blog</h1>
-  <ul>
-    {posts.map((p) => (
-      <li><a href={p.url}>{p.frontmatter.title}</a> — <span class="muted">{new Date(p.frontmatter.pubDate).toDateString()}</span></li>
-    ))}
-  </ul>
-</Layout>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>All Book Notes | Audio Ebooks</title>
+    <meta name="description" content="Browse all audiobook notes and reading summaries." />
+    <style>
+      :root {
+        --link: #0ea5e9;
+        --muted: #6b7280;
+        --card-bg: #f8fafc;
+        --border: #e5e7eb;
+        --max-width: 880px;
+      }
+
+      body {
+        font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+        margin: 0;
+        padding: 40px 24px;
+        line-height: 1.7;
+        color: #111827;
+        background: #ffffff;
+      }
+
+      main {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .post-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+      }
+
+      .post-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 20px;
+        transition: all 0.2s ease;
+      }
+
+      .post-card:hover {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .post-card h2 {
+        margin-top: 0;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .muted {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      nav a {
+        font-weight: 600;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <nav>
+        <a href="/">← Home</a>
+        <a href="/blog">Blog</a>
+      </nav>
+
+      <h1>All Book Notes</h1>
+      <section class="post-list">
+        {posts.map((p) => (
+          <article class="post-card">
+            <h2><a href={p.url}>{p.frontmatter.title}</a></h2>
+            <p class="muted">{new Date(p.frontmatter.pubDate).toDateString()}</p>
+            <p>{p.frontmatter.description}</p>
+          </article>
+        ))}
+      </section>
+    </main>
+  </body>
+</html>
