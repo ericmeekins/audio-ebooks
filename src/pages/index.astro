@@ -1,15 +1,34 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// 读取最近文章（按 pubDate 倒序，取 5 篇）
+const posts = (await Astro.glob('/src/pages/blog/*.md'))
+  .sort((a, b) => new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate))
+  .slice(0, 5);
 ---
-<Layout title="Book Notes — Clean, fast, and SEO-ready">
+
+<Layout title="Book Notes — Audiobooks & Reviews" description="Short, honest book notes and audiobook-friendly summaries.">
   <section class="card">
-    <h2>Welcome</h2>
-    <p>A clean starter for an English reading notes website. Static, fast, SEO-friendly, and deploys in one click on Vercel.</p>
+    <h1>Book Notes</h1>
+    <p>A clean, fast, SEO-friendly site for English book notes and audiobook reviews.</p>
     <ul>
-      <li>✅ Markdown-based articles</li>
-      <li>✅ <code>@astrojs/sitemap</code> preconfigured</li>
-      <li>✅ <code>robots.txt</code> and <code>vercel.json</code></li>
+      <li>✅ Markdown posts</li>
+      <li>✅ Static & fast on Vercel</li>
+      <li>✅ Sitemap & robots ready</li>
     </ul>
-    <p>Start by editing <code>src/pages/blog/rich-dad-poor-dad.md</code> or <code>src/pages/blog/the-nightingale.md</code>.</p>
+    <p><a href="/blog">Browse all posts →</a></p>
+  </section>
+
+  <section class="post">
+    <h2>Latest posts</h2>
+    <ul>
+      {posts.map((p) => (
+        <li>
+          <a href={p.url}>{p.frontmatter.title}</a>
+          {' — '}
+          <span class="muted">{new Date(p.frontmatter.pubDate).toDateString()}</span>
+        </li>
+      ))}
+    </ul>
   </section>
 </Layout>
