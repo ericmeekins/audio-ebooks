@@ -1,14 +1,50 @@
 ---
+/** Stable home without external layout **/
+const posts = (await Astro.glob('/src/pages/blog/*.md'))
+  .sort((a, b) => new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate))
+  .slice(0, 5);
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Book Notes — Home (Smoke Test)</title>
+    <title>Book Notes — Audiobooks & Reviews</title>
+    <meta name="description" content="Short, honest book notes and audiobook-friendly summaries." />
+    <style>
+      :root{--link:#0ea5e9;--muted:#6b7280;--card:#f8fafc;--bd:#e5e7eb;--max:860px}
+      body{font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:32px;line-height:1.75}
+      a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+      .wrap{max-width:var(--max);margin:0 auto}
+      .card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;margin-bottom:24px}
+      .muted{color:var(--muted)}
+      ul{padding-left:18px}
+      header{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+      header a{font-weight:700}
+    </style>
   </head>
   <body>
-    <h1>It works 🎉</h1>
-    <p>Home is rendering. Go to <a href="/blog">Blog</a>.</p>
+    <div class="wrap">
+      <header>
+        <a href="/">Book Notes</a>
+        <a href="/blog">Blog</a>
+      </header>
+
+      <section class="card">
+        <h1>Welcome 👋</h1>
+        <p>A clean, fast, SEO-friendly site for English book notes and audiobook reviews.</p>
+        <p class="muted">New here? Start from the latest 5 posts below, or browse the full <a href="/blog">blog list</a>.</p>
+      </section>
+
+      <h2>Latest posts</h2>
+      <ul>
+        {posts.map((p) => (
+          <li>
+            <a href={p.url}>{p.frontmatter.title}</a>
+            {' — '}<span class="muted">{new Date(p.frontmatter.pubDate).toDateString()}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   </body>
 </html>
