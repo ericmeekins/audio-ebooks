@@ -1,15 +1,40 @@
 ---
-import Layout from './Layout.astro';
-const { title, description, pubDate } = Astro.props;
+/**
+ * Minimal blog layout for Markdown posts
+ * Works with frontmatter: title, description, pubDate
+ */
+const { title = "Untitled", description = "", pubDate } = Astro.props;
 ---
-<Layout title={title} description={description}>
-  <article class="post">
-    <h1>{title}</h1>
-    {pubDate && <p class="muted">{new Date(pubDate).toDateString()}</p>}
-    <slot />
-    <div class="cta">
-      <strong>Prefer listening?</strong>
-      <p class="muted">This book is also available as an audiobook version online.</p>
-    </div>
-  </article>
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <style>
+      :root{--link:#0ea5e9;--muted:#6b7280;--max:860px}
+      body{font-family:ui-sans-serif,system-ui,"Segoe UI",Roboto,Arial,sans-serif;margin:32px;line-height:1.75;color:#111}
+      a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+      main{max-width:var(--max);margin:0 auto}
+      .muted{color:var(--muted)}
+      article :is(h1,h2,h3){margin-top:1.6rem}
+      article img{max-width:100%;height:auto;border-radius:8px}
+      header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <a href="/blog">← Back to Blog</a>
+      </header>
+
+      <h1>{title}</h1>
+      {pubDate && <p class="muted">{new Date(pubDate).toDateString()}</p>}
+
+      <article>
+        <slot />
+      </article>
+    </main>
+  </body>
+</html>
