@@ -1,6 +1,6 @@
 {
   "name": "astro-booksite-starter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "astro": "^4.15.0",
-    "@astrojs/sitemap": "^3.1.5"
+    "@astrojs/sitemap": "^3.1.5",
+    "@astrojs/rss": "^4.0.4",
+    "astro-seo": "^0.8.1"
   },
   "devDependencies": {
     "prettier": "^3.3.3",
