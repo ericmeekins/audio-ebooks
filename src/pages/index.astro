@@ -1,34 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
-// 读取最近文章（按 pubDate 倒序，取 5 篇）
-const posts = (await Astro.glob('/src/pages/blog/*.md'))
-  .sort((a, b) => new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate))
-  .slice(0, 5);
 ---
-
-<Layout title="Book Notes — Audiobooks & Reviews" description="Short, honest book notes and audiobook-friendly summaries.">
-  <section class="card">
-    <h1>Book Notes</h1>
-    <p>A clean, fast, SEO-friendly site for English book notes and audiobook reviews.</p>
-    <ul>
-      <li>✅ Markdown posts</li>
-      <li>✅ Static & fast on Vercel</li>
-      <li>✅ Sitemap & robots ready</li>
-    </ul>
-    <p><a href="/blog">Browse all posts →</a></p>
-  </section>
-
-  <section class="post">
-    <h2>Latest posts</h2>
-    <ul>
-      {posts.map((p) => (
-        <li>
-          <a href={p.url}>{p.frontmatter.title}</a>
-          {' — '}
-          <span class="muted">{new Date(p.frontmatter.pubDate).toDateString()}</span>
-        </li>
-      ))}
-    </ul>
-  </section>
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Book Notes — Home (Smoke Test)</title>
+  </head>
+  <body>
+    <h1>It works 🎉</h1>
+    <p>Home is rendering. Go to <a href="/blog">Blog</a>.</p>
+  </body>
+</html>
