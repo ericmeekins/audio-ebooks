@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import rss from '@astrojs/rss';
 import { glob } from 'astro/loaders';
 
-const posts = await glob('../../pages/blog/*.md');
+const posts = await Astro.glob('/src/pages/blog/*.md');
 posts.sort((a,b)=> new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate));
 
 export const get = () => rss({
