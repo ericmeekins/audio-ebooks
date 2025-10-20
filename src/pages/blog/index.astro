@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import rss from '@astrojs/rss';
+import { glob } from 'astro/loaders';
+
+const posts = await glob('../../pages/blog/*.md');
+posts.sort((a,b)=> new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate));
+
+export const get = () => rss({
+  title: 'Book Notes — RSS',
+  description: 'Reading notes and summaries',
+  site: import.meta.env.SITE || 'https://mixx.it.com',
+  items: posts.map(p => ({ link: p.url, title: p.frontmatter.title, description: p.frontmatter.description }))
+});
+---
+<Layout title="Blog">
+  <h1>Blog</h1>
+  <ul>
+    {posts.map((p) => (
+      <li><a href={p.url}>{p.frontmatter.title}</a> — <span class="muted">{new Date(p.frontmatter.pubDate).toDateString()}</span></li>
+    ))}
+  </ul>
+</Layout>

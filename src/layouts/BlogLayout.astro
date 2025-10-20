@@ -1,0 +1,15 @@
+---
+import Layout from './Layout.astro';
+const { title, description, pubDate } = Astro.props;
+---
+<Layout title={title} description={description}>
+  <article class="post">
+    <h1>{title}</h1>
+    {pubDate && <p class="muted">{new Date(pubDate).toDateString()}</p>}
+    <slot />
+    <div class="cta">
+      <strong>Prefer listening?</strong>
+      <p class="muted">This book is also available as an audiobook version online.</p>
+    </div>
+  </article>
+</Layout>

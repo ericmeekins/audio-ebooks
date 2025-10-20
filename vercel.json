@@ -1,0 +1,22 @@
+{
+  "trailingSlash": false,
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/(.*)\\.(css|js|png|jpg|svg|webp|ico|woff2?)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/audible",
+      "destination": "/guides/audiobooks",
+      "permanent": true
+    }
+  ]
+}
