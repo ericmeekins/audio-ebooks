@@ -1,5 +1,10 @@
 ---
-const { title = "Book Notes", description = "" } = Astro.props;
+const {
+  title = "Book Notes",
+  description = "Short, honest book notes and audiobook-friendly summaries.",
+  canonical = Astro.url?.href,
+  image = "/og-default.png" // 如果没有就忽略，后面可在 public/ 放一张
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -7,19 +12,38 @@ const { title = "Book Notes", description = "" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {image && <meta property="og:image" content={image} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {image && <meta name="twitter:image" content={image} />}
+
     <style>
       :root{--link:#0ea5e9;--muted:#6b7280;--max:980px;--bd:#e5e7eb;--bg:#fff;--fg:#111827}
       *{box-sizing:border-box}
-      html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.75}
-      a{color:var(--link);text-decoration:none}
-      a:hover{text-decoration:underline}
+      html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);
+        font-family:ui-sans-serif,system-ui,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.75}
+      a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
       header{border-bottom:1px solid var(--bd);background:#fafafa}
       .wrap{max-width:var(--max);margin:0 auto;padding:14px 20px;display:flex;gap:18px;align-items:center;justify-content:space-between}
       .brand{font-weight:800;letter-spacing:.2px}
       nav{display:flex;gap:16px}
       main{max-width:var(--max);margin:0 auto;padding:24px 20px}
-      footer{max-width:var(--max);margin:0 auto;padding:24px 20px;border-top:1px solid var(--bd);color:var(--muted)}
+      footer{max-width:var(--max);margin:0 auto;padding:20px;border-top:1px solid var(--bd);color:var(--muted);display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
+      .foot-links{display:flex;gap:12px}
     </style>
   </head>
   <body>
@@ -30,6 +54,7 @@ const { title = "Book Notes", description = "" } = Astro.props;
           <a href="/">Home</a>
           <a href="/blog">Blog</a>
           <a href="/about">About</a>
+          <a href="/disclaimer">Disclosure</a>
         </nav>
       </div>
     </header>
@@ -39,7 +64,12 @@ const { title = "Book Notes", description = "" } = Astro.props;
     </main>
 
     <footer>
-      <p>© {new Date().getFullYear()} Book Notes · Built with <a href="https://astro.build">Astro</a></p>
+      <div>© {new Date().getFullYear()} Book Notes</div>
+      <div class="foot-links">
+        <a href="/about">About</a>
+        <a href="/disclaimer">Disclosure</a>
+        <a href="/blog">All posts</a>
+      </div>
     </footer>
   </body>
 </html>
