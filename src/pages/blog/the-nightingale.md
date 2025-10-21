@@ -1,9 +1,11 @@
 ---
 layout: ../../layouts/BlogLayout.astro
 title: The Nightingale — Courage, Love, and the Quiet Power of Resistance
-description: A moving reflection on Kristin Hannah’s World War II novel and its enduring lessons about sacrifice and hope.
+description: A moving reflection on Kristin Hannah’s World War II novel and its enduring lessons about sacrifice, resilience, and hope.
 pubDate: 2025-10-20
+tags: ["audiobook", "Kristin Hannah", "WWII", "courage"]
 ---
+
 
 Some novels illuminate history; *The Nightingale* by Kristin Hannah makes you feel it beat under your skin. Set in Nazi-occupied France during World War II, the story follows two sisters, Vianne and Isabelle, who respond to the darkness of war in radically different ways. One fights with quiet endurance to protect her family and neighbors; the other joins the Resistance, risking everything to save lives and pass messages in the shadows.
 

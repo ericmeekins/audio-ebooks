@@ -3,7 +3,9 @@ layout: ../../layouts/BlogLayout.astro
 title: The Great Alone — Survival, Love, and the Cost of Hope
 description: A heartfelt reflection on Kristin Hannah’s Alaska novel and its deep lessons about resilience, family, and freedom.
 pubDate: 2025-10-21
+tags: ["audiobook", "Kristin Hannah", "family", "survival"]
 ---
+
 
 Sometimes, a book doesn’t just tell a story — it pulls you into a world so vivid that you can almost feel the cold air on your skin. *The Great Alone* by Kristin Hannah is one of those novels. Set in the wild landscapes of Alaska in the 1970s, it’s both a survival story and an emotional journey through the complexities of love, trauma, and self-discovery.
 

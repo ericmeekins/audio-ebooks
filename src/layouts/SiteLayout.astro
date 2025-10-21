@@ -1,0 +1,45 @@
+---
+const { title = "Book Notes", description = "" } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <style>
+      :root{--link:#0ea5e9;--muted:#6b7280;--max:980px;--bd:#e5e7eb;--bg:#fff;--fg:#111827}
+      *{box-sizing:border-box}
+      html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.75}
+      a{color:var(--link);text-decoration:none}
+      a:hover{text-decoration:underline}
+      header{border-bottom:1px solid var(--bd);background:#fafafa}
+      .wrap{max-width:var(--max);margin:0 auto;padding:14px 20px;display:flex;gap:18px;align-items:center;justify-content:space-between}
+      .brand{font-weight:800;letter-spacing:.2px}
+      nav{display:flex;gap:16px}
+      main{max-width:var(--max);margin:0 auto;padding:24px 20px}
+      footer{max-width:var(--max);margin:0 auto;padding:24px 20px;border-top:1px solid var(--bd);color:var(--muted)}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <a class="brand" href="/">Book Notes</a>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/blog">Blog</a>
+          <a href="/about">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <p>© {new Date().getFullYear()} Book Notes · Built with <a href="https://astro.build">Astro</a></p>
+    </footer>
+  </body>
+</html>

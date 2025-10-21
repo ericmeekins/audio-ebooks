@@ -1,9 +1,11 @@
 ---
 layout: ../../layouts/BlogLayout.astro
-title: The Life Lessons from Rich Dad Poor Dad
-description: A reflective take on Robert Kiyosaki’s classic that shifts how we think about money, work, and freedom.
+title: Rich Dad Poor Dad — Life Lessons on Wealth and Freedom
+description: A reflective take on Robert Kiyosaki’s classic book that challenges how we think about money, work, and personal growth.
 pubDate: 2025-10-20
+tags: ["audiobook", "finance", "motivation", "Robert Kiyosaki"]
 ---
+
 
 There are certain books that do not just share ideas — they change the way we think about money, success, and life itself. *Rich Dad Poor Dad* by Robert Kiyosaki is one of those rare books that stays with you long after you finish reading. It’s not a manual filled with financial formulas or quick-profit strategies; it’s a mindset shift, a story of two fathers and two entirely different approaches to wealth and freedom.
 
