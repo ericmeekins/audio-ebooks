@@ -22,3 +22,26 @@ By the final pages, you realize this isn’t just a story about surviving Alaska
 If you enjoy stories that combine emotional depth, breathtaking nature, and unforgettable characters, *The Great Alone* will stay with you long after you close the last page.  
 
 > Prefer listening? This book is also available as an audiobook version online.
+---
+
+If you’d like to experience *The Great Alone* yourself, you can find the audiobook or Kindle edition on Amazon.  
+👉 [Get it here on Amazon »](https://amzn.to/4ncZ9d2){target="_blank" rel="nofollow noopener sponsored"}
+
+---
+
+<style>
+a[target="_blank"] {
+  display: inline-block;
+  background-color: #2563eb;
+  color: #fff !important;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 10px;
+}
+a[target="_blank"]:hover {
+  background-color: #1d4ed8;
+}
+</style>
+
