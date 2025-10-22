@@ -25,12 +25,12 @@ If you enjoy stories that combine emotional depth, breathtaking nature, and unfo
 ---
 
 If you’d like to experience *The Great Alone* yourself, you can find the audiobook or Kindle edition on Amazon.  
-👉 [Get it here on Amazon »](https://amzn.to/4ncZ9d2){target="_blank" rel="nofollow noopener sponsored"}
+👉 [Get it here on Amazon »](https://amzn.to/4ncZ9d2)
 
 ---
 
 <style>
-a[target="_blank"] {
+a[href*="amzn.to"] {
   display: inline-block;
   background-color: #2563eb;
   color: #fff !important;
@@ -40,8 +40,9 @@ a[target="_blank"] {
   font-weight: 600;
   margin-top: 10px;
 }
-a[target="_blank"]:hover {
+a[href*="amzn.to"]:hover {
   background-color: #1d4ed8;
 }
 </style>
+
 
