@@ -25,15 +25,30 @@ const allPosts = (await getCollection("blog"))
   <p>
     New here? Start from the latest 5 posts below, or browse the full <a href="/blog/">Blog</a>.
   </p>
-</section>
-      New here? Start from the latest posts below, or browse the full
-      <a href="/blog" class="text-blue-600 hover:underline">Blog</a>.
-    </p>
 
     <!-- 🌿 Slogan -->
     <p class="text-center text-gray-600 italic mt-6">
       “Books for busy minds. Peace for busy days.”
     </p>
+<div style="text-align: center; margin-top: 2rem;">
+  <a
+    href="/blog/"
+    style="
+      display: inline-block;
+      background-color: #0070f3;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    "
+    onmouseover="this.style.backgroundColor='#0059c1'"
+    onmouseout="this.style.backgroundColor='#0070f3'"
+  >
+    📚 Explore More Books →
+  </a>
+</div>
   </section>
 
   <!-- 📚 Latest Posts -->
@@ -63,12 +78,4 @@ const allPosts = (await getCollection("blog"))
 
   <!-- 🌱 Footer -->
   <footer class="mt-12 text-center text-gray-500 text-sm">
-    <p>© 2025 MixxReads. All rights reserved.</p>
-    <p class="mt-1">
-      <a href="/about" class="hover:underline text-blue-600">About</a> ·
-      <a href="/disclosure" class="hover:underline text-blue-600">Disclosure</a> ·
-      <a href="/blog" class="hover:underline text-blue-600">All Posts</a>
-    </p>
-  </footer>
-
 </SiteLayout>
