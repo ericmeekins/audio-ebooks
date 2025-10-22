@@ -3,7 +3,7 @@ layout: ../../layouts/BlogLayout.astro
 title: The Nightingale — Courage, Love, and the Quiet Power of Resistance
 description: Kristin Hannah’s powerful World War II novel exploring love, resilience, and the sacrifices of two sisters in occupied France.
 pubDate: 2025-10-20
-affiliate: https://amzn.to/3TKoFcm
+affiliate: https://amzn.to/47vvhUp
 tags: ["audiobook", "historical fiction", "WWII", "Kristin Hannah"]
 ---
 
@@ -17,9 +17,4 @@ The novel’s emotional weight comes from its humanity. Hannah writes with tende
 
 At the end of *The Nightingale*, we’re left with a haunting truth: history remembers battles and generals, but it’s the courage of ordinary people that shapes the world.
 
----
 
-👉 If you’d like to experience *The Nightingale*, you can find it on Amazon as an **audiobook** or **Kindle** edition.  
-[🎧 Get it on Amazon »](https://amzn.to/47vvhUp){target="_blank" rel="nofollow noopener sponsored"}
-
----
