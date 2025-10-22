@@ -1,23 +1,74 @@
 ---
-import SiteLayout from '../layouts/SiteLayout.astro';
-const posts = (await Astro.glob('/src/pages/blog/*.md'))
-  .sort((a, b) => new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate))
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = (await getCollection("blog"))
+  .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate))
   .slice(0, 5);
 ---
-<SiteLayout title="Book Notes — Audiobooks & Reviews" description="Short, honest book notes and audiobook-friendly summaries.">
-  <section style="border:1px solid #e5e7eb;border-radius:14px;padding:18px;background:#f8fafc">
-    <h2 style="margin:0 0 8px 0">Welcome 👋</h2>
-    <p style="margin:0 0 12px 0">A clean, fast, SEO-friendly site for English book notes and audiobook reviews.</p>
-    <p style="margin:0">New here? Start from the latest posts, or browse the full <a href="/blog">Blog</a>.</p>
+
+<SiteLayout
+  title="MixxReads — Audiobook Reviews and Book Notes"
+  description="Find peace in busy days. Honest, thoughtful reflections on books and audiobooks — short, clear, and calm."
+>
+
+  <!-- 🌿 Welcome Section -->
+ <section class="intro">
+  <h2>Welcome 👋</h2>
+  <p>
+    Are you constantly busy — with work, family, and endless tasks — yet rarely find a moment of peace?
+    It’s okay. Here, you can read or listen while working, parenting, or managing life’s chaos.
+    If you love books but don’t have time to read, try listening instead. Turn small moments into opportunities for reflection and calm.
+    Every book shared here is chosen to help you reconnect with yourself — to find stillness and meaning in the middle of a busy world.
+    If one story brings you peace, that will be my greatest joy.
+  </p>
+  <p>
+    New here? Start from the latest 5 posts below, or browse the full <a href="/blog/">Blog</a>.
+  </p>
+</section>
+      New here? Start from the latest posts below, or browse the full
+      <a href="/blog" class="text-blue-600 hover:underline">Blog</a>.
+    </p>
+
+    <!-- 🌿 Slogan -->
+    <p class="text-center text-gray-600 italic mt-6">
+      “Books for busy minds. Peace for busy days.”
+    </p>
   </section>
 
-  <h2>Latest posts</h2>
-  <ul>
-    {posts.map((p) => (
-      <li>
-        <a href={p.url}>{p.frontmatter.title}</a>
-        {' — '}<span style="color:#6b7280">{new Date(p.frontmatter.pubDate).toDateString()}</span>
-      </li>
-    ))}
-  </ul>
+  <!-- 📚 Latest Posts -->
+  <section>
+    <h2 class="text-xl font-bold mb-4">Latest posts</h2>
+    <ul class="list-disc list-inside space-y-2">
+      {allPosts.map((post) => (
+        <li>
+          <a
+            href={`/blog/${post.slug}/`}
+            class="text-blue-600 hover:underline font-medium"
+          >
+            {post.data.title}
+          </a>
+          <span class="text-gray-500">
+            — {new Date(post.data.pubDate).toLocaleDateString("en-US", {
+              weekday: "short",
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- 🌱 Footer -->
+  <footer class="mt-12 text-center text-gray-500 text-sm">
+    <p>© 2025 MixxReads. All rights reserved.</p>
+    <p class="mt-1">
+      <a href="/about" class="hover:underline text-blue-600">About</a> ·
+      <a href="/disclosure" class="hover:underline text-blue-600">Disclosure</a> ·
+      <a href="/blog" class="hover:underline text-blue-600">All Posts</a>
+    </p>
+  </footer>
+
 </SiteLayout>
