@@ -1,11 +1,33 @@
 ---
-import SiteLayout from './SiteLayout.astro';
-const { title = "Untitled", description = "", pubDate } = Astro.props;
+import SiteLayout from "./SiteLayout.astro";
+
+// 兜底读取：顶层 props -> frontmatter -> data
+const fm = Astro.props ?? {};
+const title =
+  fm.title ??
+  fm.frontmatter?.title ??
+  fm.data?.title ??
+  "Untitled";
+
+const description =
+  fm.description ??
+  fm.frontmatter?.description ??
+  fm.data?.description ??
+  "";
+
+const rawDate =
+  fm.pubDate ??
+  fm.frontmatter?.pubDate ??
+  fm.data?.pubDate ??
+  null;
+
+const pubDate = rawDate ? new Date(rawDate) : null;
 ---
+
 <SiteLayout title={title} description={description}>
   <article>
     <h1>{title}</h1>
-    {pubDate && <p style="color:#6b7280">{new Date(pubDate).toDateString()}</p>}
+    {pubDate && <p style="color:#6b7280">{pubDate.toDateString()}</p>}
     <slot />
   </article>
 </SiteLayout>
