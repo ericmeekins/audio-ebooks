@@ -1,7 +1,7 @@
 ---
 import SiteLayout from "./SiteLayout.astro";
 
-// 兜底读取：顶层 props -> frontmatter -> data
+// 从 frontmatter / Astro.props 中读取参数
 const fm = Astro.props ?? {};
 const title =
   fm.title ??
@@ -21,6 +21,12 @@ const rawDate =
   fm.data?.pubDate ??
   null;
 
+const affiliate =
+  fm.affiliate ??
+  fm.frontmatter?.affiliate ??
+  fm.data?.affiliate ??
+  "";
+
 const pubDate = rawDate ? new Date(rawDate) : null;
 ---
 
@@ -29,5 +35,31 @@ const pubDate = rawDate ? new Date(rawDate) : null;
     <h1>{title}</h1>
     {pubDate && <p style="color:#6b7280">{pubDate.toDateString()}</p>}
     <slot />
+
+    {affiliate && (
+      <div style="margin-top: 2rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+        <p>
+          If you’d like to explore <em>{title}</em>, you can find it on Amazon
+          as an audiobook or Kindle edition.
+        </p>
+        <a
+          href={affiliate}
+          target="_blank"
+          rel="nofollow noopener sponsored"
+          style="
+            display:inline-block;
+            background-color:#2563eb;
+            color:white;
+            padding:10px 18px;
+            border-radius:6px;
+            text-decoration:none;
+            font-weight:600;
+            margin-top:10px;
+          "
+        >
+          👉 Get it on Amazon »
+        </a>
+      </div>
+    )}
   </article>
 </SiteLayout>
